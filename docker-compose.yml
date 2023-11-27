@@ -1,0 +1,57 @@
+version: "3.9"
+services:
+  server-app:
+    container_name: "wivenn-server-app"
+    image: nginx:latest
+    restart: always
+    working_dir: /var/www/app
+    volumes:
+      - ./server-app:/var/www/app
+      - ./server-app/nginx:/etc/nginx/conf.d
+    stdin_open: true
+    tty: true
+    depends_on:
+      - php
+    links:
+      - php
+    ports:
+      - "2000:2000"
+
+  php:
+    container_name: "wivenn-server-app-php"
+    build: 
+      context: server-app
+      dockerfile: Dockerfile
+    restart: always
+    working_dir: /var/www/app
+    volumes:
+      - ./server-app/:/var/www/app
+
+  postgres:
+    container_name: "wivenn-server-app-postgres"
+    image: postgres:15
+    restart: always
+    volumes:
+        - ./database-app:/var/lib/postgresql/data
+    environment:
+        POSTGRES_USER: contato@wilsoncastro.dev
+        POSTGRES_PASSWORD: wilsoncastro123
+        POSTGRES_DB: wivenn
+    ports:
+        - "5432:5432"
+
+  pgadmin:
+    container_name: "wivenn-server-app-pgadmin4"
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - "2050:80"
+    depends_on:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: contato@wilsoncastro.dev
+      PGADMIN_DEFAULT_PASSWORD: wilsoncastro123
+
+# Comando para entrar no container wivenn-server-app-php
+# docker exec -it wivenn-server-app-php bash
+# docker exec -it wivenn-server-app-php bash ../server-init.sh
