@@ -11,7 +11,9 @@ class BaseController extends Controller
 {
     public function sendResponse(mixed $result, int $code = 200, string $message = null): Response
     {
-        $response['data'] = $result;
+        if ($result) {
+            $response['data'] = $result;
+        }
 
         if ($message) {
             $response['message'] = $message;

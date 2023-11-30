@@ -2,18 +2,32 @@
 
 namespace App\Repositories;
 
+use \Exception;
 use App\Interfaces\Repositories\AuthRepositoryInterface;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AuthRepository implements AuthRepositoryInterface
 {
     public function register(Request $request): User
     {
-        $user = User::create($request->toArray());
-        $user->token = $user->createToken('Wivenn Token')->accessToken;
-        return $user;
+        DB::beginTransaction();
+
+        try {
+            $user = User::create($request->toArray());
+            $user->token = $user->createToken('Wivenn Token')->accessToken;
+            $user->assignRole($request->role);
+
+            DB::commit();
+
+            return $user;
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::error($e);
+        }
     }
 
     public function login(Request $request): User | null
