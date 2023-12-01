@@ -1,5 +1,15 @@
 version: "3.9"
 services:
+  client-app:
+    container_name: "client-app"
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./client-app/build:/usr/share/nginx/html
+      - ./client-app/nginx:/etc/nginx/conf.d
+    ports:
+      - "3000:3000"
+
   server-app:
     container_name: "wivenn-server-app"
     image: nginx:latest
