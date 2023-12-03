@@ -1,0 +1,43 @@
+html {
+  height: 100% !important;
+}
+
+body {
+  height: 100%;
+  color: $gray;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  background-color: $body-bg;
+}
+
+#app {
+  height: 100%;
+}
+
+*:focus {
+  box-shadow: none !important;
+}
+
+a {
+  text-decoration: none !important;
+  color: #7d369f;
+}
+
+.logo {
+    font-family: $font-family-main;
+    font-size: 3.625rem;
+    color: $primary;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.logo-admin {
+  color: $secondary;
+}
+
+.message-registered {
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  color: $primary;
+}
