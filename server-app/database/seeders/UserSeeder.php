@@ -14,6 +14,19 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
+                'name' => 'Usuário 1',
+                'email' => 'usuario1@wivenn.com.br',
+                'password' => 'wilsoncastro123',
+            ],
+            [
+                'name' => 'Usuário 2',
+                'email' => 'usuario2@wivenn.com.br',
+                'password' => 'wilsoncastro123',
+            ],
+        ];
+
+        $librarians = [
+            [
                 'name' => 'Bibliotecário 1',
                 'email' => 'bibliotecario1@wivenn.com.br',
                 'password' => 'wilsoncastro123',
@@ -27,7 +40,12 @@ class UserSeeder extends Seeder
 
         foreach ($users as $user) {
             $user = User::create($user);
-            $user->assignRole('librarian');
+            $user->assignRole('user');
+        }
+
+        foreach ($librarians as $librarian) {
+            $librarian = User::create($librarian);
+            $librarian->assignRole('librarian');
         }
     }
 }

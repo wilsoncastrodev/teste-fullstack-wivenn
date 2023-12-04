@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use \Exception;
+use Illuminate\Http\Request;
+use App\Services\AuthService;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use App\Services\AuthService;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\BaseController;
 
 class AuthController extends BaseController
 {
@@ -44,6 +45,17 @@ class AuthController extends BaseController
         try {
             $this->authService->logout($request);
             return $this->sendResponse("", 200, "Usuário deslogado com sucesso");
+        } catch (Exception $e) {
+            return $this->sendErrorException($e);
+        }
+    }
+
+    public function verify(Request $request)
+    {
+        try {
+            $verify = $this->authService->verify($request);
+            return $verify ? redirect()->intended(env('CLIENT_URL') . "/login" . '?verificado=0') :
+                redirect()->intended(env('CLIENT_URL') . "/login" . '?verificado=1');
         } catch (Exception $e) {
             return $this->sendErrorException($e);
         }
