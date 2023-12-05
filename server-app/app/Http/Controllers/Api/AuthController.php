@@ -32,9 +32,16 @@ class AuthController extends BaseController
     {
         try {
             $user = $this->authService->login($request);
-            return !empty($user->resource)
-                ? $this->sendResponse($user)
-                : $this->sendError('Usuário não autenticado', 401);
+
+            if (empty($user->resource)) {
+                return $this->sendError('Usuário não autenticado', 401);
+            }
+
+            if (!$user->verified) {
+                return $this->sendError('Usuário não verificado', 403);
+            }
+
+            return $this->sendResponse($user);
         } catch (Exception $e) {
             return $this->sendErrorException($e);
         }
@@ -54,8 +61,8 @@ class AuthController extends BaseController
     {
         try {
             $verify = $this->authService->verify($request);
-            return $verify ? redirect()->intended(env('CLIENT_URL') . "/login" . '?verificado=0') :
-                redirect()->intended(env('CLIENT_URL') . "/login" . '?verificado=1');
+            return $verify ? redirect()->intended(env('CLIENT_URL') . '/login' . '?verificado=1') :
+                redirect()->intended(env('CLIENT_URL') . '/login' . '?verificado=0');
         } catch (Exception $e) {
             return $this->sendErrorException($e);
         }

@@ -33,7 +33,7 @@ interface UserRepositoryInterface
      *
      * @return bool Retorna verdadeiro se usuário foi deslogado do sistema.
      */
-    public function revokeUserAuthenticated(Request $request): bool;
+    public function revokeUserAuthenticated(Request $request): void;
 
     /**
      * Obtêm o e-mail para realizar a confirmação da conta.
@@ -42,14 +42,14 @@ interface UserRepositoryInterface
      *
      * @return bool Retorna o endereço de e-mail do Usuário.
      */
-    public function getEmailForVerification(User $user): bool;
+    public function getEmailForVerification(User $user): string;
 
     /**
      *  Verifica se o e-mail de um Usuário foi verificado ou não
      *
      * @param Request $request O objeto "Usuário"
      *
-     * @return bool Retorna verdadeiro se o e-mail do usuário foi verificado e falso caso contrário.
+     * @return string Retorna verdadeiro se o e-mail do usuário foi verificado e falso caso contrário.
      */
     public function hasVerifiedEmail(User $user): bool;
 

@@ -33,7 +33,7 @@ class Handler extends ExceptionHandler
     {
         if ($e instanceof UnauthorizedException) {
             return response([
-                'message' => 'Você não tem autorização suficiente para acessar esse recurso',
+                'message' => 'Você não tem autorização suficiente para acessar este recurso',
             ], 403);
         }
 

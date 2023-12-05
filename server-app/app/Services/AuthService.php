@@ -36,9 +36,9 @@ class AuthService implements AuthServiceInterface
         return new LoginResource($user);
     }
 
-    public function logout(Request $request): bool
+    public function logout(Request $request): void
     {
-        return $this->userRepository->revokeUserAuthenticated($request);
+        $this->userRepository->revokeUserAuthenticated($request);
     }
 
     public function verify(Request $request): bool

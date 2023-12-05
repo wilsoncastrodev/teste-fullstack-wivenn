@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Date;
 
 class UserSeeder extends Seeder
 {
@@ -17,11 +18,13 @@ class UserSeeder extends Seeder
                 'name' => 'Usuário 1',
                 'email' => 'usuario1@wivenn.com.br',
                 'password' => 'wilsoncastro123',
+                'email_verified_at' => Date::now()
             ],
             [
                 'name' => 'Usuário 2',
                 'email' => 'usuario2@wivenn.com.br',
                 'password' => 'wilsoncastro123',
+                'email_verified_at' => Date::now()
             ],
         ];
 
@@ -30,11 +33,13 @@ class UserSeeder extends Seeder
                 'name' => 'Bibliotecário 1',
                 'email' => 'bibliotecario1@wivenn.com.br',
                 'password' => 'wilsoncastro123',
+                'email_verified_at' => Date::now()
             ],
             [
                 'name' => 'Bibliotecário 2',
                 'email' => 'bibliotecario2@wivenn.com.br',
                 'password' => 'wilsoncastro123',
+                'email_verified_at' => Date::now()
             ],
         ];
 

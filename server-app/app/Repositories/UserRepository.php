@@ -34,6 +34,12 @@ class UserRepository implements UserRepositoryInterface
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
             $user->token = $user->createToken('Wivenn Token')->accessToken;
+            $user->verified = false;
+
+            if ($user->hasVerifiedEmail()) {
+                $user->verified = true;
+            }
+
             return $user;
         }
 
@@ -45,14 +51,14 @@ class UserRepository implements UserRepositoryInterface
         return User::find($request->id);
     }
 
-    public function revokeUserAuthenticated(Request $request): bool
+    public function revokeUserAuthenticated(Request $request): void
     {
         if (Auth::user()) {
-            return $request->user()->token()->revoke();
+            $request->user()->token()->revoke();
         }
     }
 
-    public function getEmailForVerification(User $user): bool
+    public function getEmailForVerification(User $user): string
     {
         return $user->getEmailForVerification();
     }

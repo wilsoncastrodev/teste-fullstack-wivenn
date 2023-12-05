@@ -32,7 +32,7 @@ interface AuthServiceInterface
      *
      * @return bool Retorna verdadeiro se usuário foi deslogado.
      */
-    public function logout(Request $request): bool;
+    public function logout(Request $request): void;
 
     /**
      * Serviço para confirmação de cadastro do Usuário através do e-mail
