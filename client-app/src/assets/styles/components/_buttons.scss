@@ -24,4 +24,11 @@
   &.btn-block {
     padding: 11px 20px;
   }
+
+  &.disabled {
+    background: #eae5ed;
+    border: none;
+    color: $primary;
+    font-weight: 600;
+  }
 }

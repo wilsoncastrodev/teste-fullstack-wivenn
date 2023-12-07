@@ -11,8 +11,14 @@
 // COMPONENTS
 @import 'components/alerts';
 @import 'components/buttons';
+@import 'components/cards';
 @import 'components/forms';
+@import 'components/search';
 @import 'components/typography';
 
 // PAGES
 @import 'pages/auth';
+
+// LAYOUTS
+@import 'layouts/header';
+@import 'layouts/menu';

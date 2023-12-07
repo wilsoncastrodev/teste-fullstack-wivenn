@@ -1,11 +1,13 @@
-import { FC } from "react";
+import { FC, Fragment } from "react";
 import { Outlet } from "react-router-dom";
+import Header from "../components/layouts/headers/Header";
 
 export const AppLayout: FC = () => {
     return (
-        <div>
+        <Fragment>
+            <Header />
             <Outlet />
-        </div>
+        </Fragment>
     );
 };
 
