@@ -123,7 +123,7 @@ class AuthControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testEmailPodeSerVerificado(): void
+    public function testApiEmailPodeSerVerificado(): void
     {
         $user = User::factory()->create();
 
@@ -135,7 +135,7 @@ class AuthControllerTest extends TestCase
         $response->assertRedirect(env('CLIENT_URL') . '/login' . '?verificado=1');
     }
 
-    public function testEmaiNãoVerificadoComHashInvalida(): void
+    public function testApiEmailNaoVerificadoComHashInvalida(): void
     {
         $user = User::factory()->create();
 

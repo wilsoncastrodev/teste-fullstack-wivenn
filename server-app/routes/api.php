@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,10 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware(['auth:api', 'role:user|librarian', 'verified'])->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
+    });
+
+    Route::middleware(['auth:api', 'role:user', 'verified'])->group(function () {
+        Route::get('books/paginate/{length}', [BookController::class, 'paginate']);
+        Route::get('books/search/{query}', [BookController::class, 'searchBook']);
     });
 });
