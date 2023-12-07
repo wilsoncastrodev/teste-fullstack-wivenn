@@ -16,7 +16,7 @@ import LoginPage from "../pages/auth/Login";
 import RegisterPage from "../pages/auth/Register";
 import RegisterSuccessPage from "../pages/auth/RegisterSuccess";
 
-import HomePage from "../pages/app/Home";
+import HomePage from "../pages/app/home/Home";
 
 import ReservationsPage from "../pages/admin/Reservations";
 
