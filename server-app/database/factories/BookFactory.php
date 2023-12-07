@@ -27,7 +27,7 @@ class BookFactory extends Factory
             'publisher' => $this->faker->company(),
             'isbn' => $this->faker->unique()->word(),
             'pages' => $this->faker->randomNumber(1),
-            'isAvailable' => $this->faker->numberBetween(0, 1),
+            'is_available' => $this->faker->numberBetween(0, 1),
         ];
     }
 }
