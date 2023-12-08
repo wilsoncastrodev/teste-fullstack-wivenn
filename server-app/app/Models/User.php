@@ -50,4 +50,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Reservation::class);
     }
 
+    public function reservedBooks()
+    {
+        return $this->belongsToMany(Book::class, 'reservations', 'user_id', 'book_id')
+                    ->withPivot('id', 'due_date', 'status')->orderBy('status', 'asc');
+    }
 }

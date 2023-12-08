@@ -23,4 +23,11 @@ interface BookServiceInterface
      * @return ResourceCollection Os Livros que foram encontrados.
      */
     public function searchBook(mixed $query): ResourceCollection;
+
+    /**
+     * Serviço para consultar todos os Livros reservados pelo Usuário
+     *
+     * @return ResourceCollection Os Livros Reservados pelo Usuário que foram encontrados.
+     */
+    public function getReservedBooksByUser(): ResourceCollection;
 }

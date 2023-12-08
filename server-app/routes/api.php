@@ -27,6 +27,8 @@ Route::prefix('v1')->group(function () {
     Route::middleware(['auth:api', 'role:user', 'verified'])->group(function () {
         Route::get('books/paginate/{length}', [BookController::class, 'paginate']);
         Route::get('books/search/{query}', [BookController::class, 'searchBook']);
+        Route::get('books/reserved', [BookController::class, 'reservedBooks']);
+
         Route::post('reservations', [ReservationController::class, 'store']);
     });
 });
