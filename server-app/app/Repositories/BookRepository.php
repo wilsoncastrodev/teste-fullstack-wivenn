@@ -2,10 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Interfaces\Repositories\BookRepositoryInterface;
 use App\Models\Book;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Interfaces\Repositories\BookRepositoryInterface;
 
 class BookRepository implements BookRepositoryInterface
 {
@@ -20,5 +21,10 @@ class BookRepository implements BookRepositoryInterface
             ->orWhere('author', 'like', '%' . $query . '%')
             ->orWhere('isbn', 'like', '%' . $query . '%')
             ->get();
+    }
+
+    public function getReservedBooksByUser(): Collection
+    {
+        return Auth::user()->reservedBooks;
     }
 }

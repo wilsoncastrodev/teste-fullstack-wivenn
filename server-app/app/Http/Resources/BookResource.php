@@ -15,7 +15,7 @@ class BookResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
+        $array = [
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
@@ -28,5 +28,13 @@ class BookResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
+
+        if (!empty($this->pivot)) {
+            $array['reservation']['id'] = $this->pivot->id;
+            $array['reservation']['due_date'] = $this->pivot->due_date;
+            $array['reservation']['status'] = $this->pivot->status;
+        }
+
+        return $array;
     }
 }

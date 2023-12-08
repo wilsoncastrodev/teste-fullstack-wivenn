@@ -28,4 +28,10 @@ class BookService implements BookServiceInterface
         $books = $this->bookRepository->searchBook($query);
         return new BookCollection($books);
     }
+
+    public function getReservedBooksByUser(): ResourceCollection
+    {
+        $books = $this->bookRepository->getReservedBooksByUser();
+        return new BookCollection($books);
+    }
 }

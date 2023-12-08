@@ -35,4 +35,14 @@ class BookController extends BaseController
             return $this->sendErrorException($e);
         }
     }
+
+    public function reservedBooks(): Response
+    {
+        try {
+            $books = $this->bookService->getReservedBooksByUser();
+            return $this->sendResponse($books);
+        } catch (Exception $e) {
+            return $this->sendErrorException($e);
+        }
+    }
 }

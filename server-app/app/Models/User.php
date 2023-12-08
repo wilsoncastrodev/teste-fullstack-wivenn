@@ -44,4 +44,15 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+
+    public function reservedBooks()
+    {
+        return $this->belongsToMany(Book::class, 'reservations', 'user_id', 'book_id')
+                    ->withPivot('id', 'due_date', 'status')->orderBy('status', 'asc');
+    }
 }

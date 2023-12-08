@@ -24,4 +24,11 @@ interface BookRepositoryInterface
      * @return Collection Os Livros que foram encontrados.
      */
     public function searchBook(mixed $query): Collection;
+
+    /**
+     * Consulta todos os Livros reservados pelo Usuário
+     *
+     * @return Collection Os Livros Reservados pelo Usuário que foram encontrados.
+     */
+    public function getReservedBooksByUser(): Collection;
 }

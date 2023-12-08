@@ -24,4 +24,9 @@ class Book extends Model
         'pages',
         'is_available',
     ];
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }
