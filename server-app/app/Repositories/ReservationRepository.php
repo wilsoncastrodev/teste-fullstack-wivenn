@@ -24,4 +24,18 @@ class ReservationRepository implements ReservationRepositoryInterface
             Log::error($e);
         }
     }
+
+    public function cancelReservation(Reservation $reservation)
+    {
+        DB::beginTransaction();
+        try {
+            $reservation->update(['status' => 'Cancelado']);
+            $reservation->book->update(['is_available' => true]);
+            DB::commit();
+            return $reservation->refresh();
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::error($e);
+        }
+    }
 }

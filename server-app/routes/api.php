@@ -30,5 +30,6 @@ Route::prefix('v1')->group(function () {
         Route::get('books/reserved', [BookController::class, 'reservedBooks']);
 
         Route::post('reservations', [ReservationController::class, 'store']);
+        Route::patch('reservations/{reservation}', [ReservationController::class, 'cancel']);
     });
 });

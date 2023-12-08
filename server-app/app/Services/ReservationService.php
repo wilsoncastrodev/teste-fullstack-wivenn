@@ -23,4 +23,10 @@ class ReservationService implements ReservationServiceInterface
         $reservations = $this->reservationRepository->createReservation($request);
         return new ReservationResource($reservations);
     }
+
+    public function cancelReservation(Reservation $reservation): JsonResource
+    {
+        $reservations = $this->reservationRepository->cancelReservation($reservation);
+        return new ReservationResource($reservations);
+    }
 }
