@@ -5,12 +5,18 @@ namespace App\Repositories;
 use \Exception;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Interfaces\Repositories\ReservationRepositoryInterface;
 
 class ReservationRepository implements ReservationRepositoryInterface
 {
+    public function getAllReservation(): Collection
+    {
+        return Reservation::with('user', 'book')->orderBy('created_at', 'desc')->get();
+    }
+
     public function createReservation(Request $request): Reservation
     {
         DB::beginTransaction();
@@ -25,7 +31,7 @@ class ReservationRepository implements ReservationRepositoryInterface
         }
     }
 
-    public function cancelReservation(Reservation $reservation)
+    public function cancelReservation(Reservation $reservation): Reservation
     {
         DB::beginTransaction();
         try {

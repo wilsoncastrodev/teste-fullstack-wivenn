@@ -14,7 +14,7 @@ class ReservationResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
+        $array = [
             'id' => $this->id,
             'due_date' => $this->due_date,
             'status' => $this->status,
@@ -22,5 +22,12 @@ class ReservationResource extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
+
+        if (!empty($this->book) && !empty($this->user)) {
+            $array['book'] = $this->book;
+            $array['user'] = $this->user;
+        }
+
+        return $array;
     }
 }

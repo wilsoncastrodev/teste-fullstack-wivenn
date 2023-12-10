@@ -21,6 +21,8 @@ Route::prefix('v1')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
 
     Route::middleware(['auth:api', 'role:user|librarian', 'verified'])->group(function () {
+        Route::patch('reservations/{reservation}', [ReservationController::class, 'cancel']);
+
         Route::post('logout', [AuthController::class, 'logout']);
     });
 
@@ -30,6 +32,9 @@ Route::prefix('v1')->group(function () {
         Route::get('books/reserved', [BookController::class, 'reservedBooks']);
 
         Route::post('reservations', [ReservationController::class, 'store']);
-        Route::patch('reservations/{reservation}', [ReservationController::class, 'cancel']);
+    });
+
+    Route::middleware(['auth:api', 'role:librarian', 'verified'])->group(function () {
+        Route::get('reservations', [ReservationController::class, 'index']);
     });
 });
