@@ -24,6 +24,17 @@ export const searchBook = createAsyncThunk("book/searchBook", async (payload: Bo
     }
 });
 
+export const getReservedBooksByUser = createAsyncThunk("book/getReservedBooksByUser", async (_, { rejectWithValue }) => {
+    try {
+        const { data: { data } }: any = await BookService.getReservedBooksByUser();
+        return data;
+    } catch (err) {
+            const error = axiosErrorHandler(err);
+            return rejectWithValue(error);
+        }
+    }
+);
+
 const initialState: BookStateType = {
     books: null,
     errors: null,
@@ -51,9 +62,19 @@ export const bookSlice = createSlice({
         builder.addCase(searchBook.fulfilled, (state, action) => {
             state.books = action.payload;
             state.isLoading = false;
-            state.errors = null;
         });
         builder.addCase(searchBook.rejected, (state, action) => {
+            state.errors = action.payload;
+        });
+        builder.addCase(getReservedBooksByUser.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getReservedBooksByUser.fulfilled, (state, action) => {
+            state.books = action.payload;
+            state.isLoading = false;
+            state.errors = null;
+        });
+        builder.addCase(getReservedBooksByUser.rejected, (state, action) => {
             state.errors = action.payload;
         });
     },

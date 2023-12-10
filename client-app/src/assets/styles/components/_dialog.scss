@@ -1,0 +1,34 @@
+.p-dialog-mask {
+    .p-dialog {
+        .p-dialog-header {
+            color: $primary;
+        }
+
+        .p-dialog-content {
+            color: $primary;
+        }
+    }
+}
+
+.p-dialog {
+    .p-dialog-content {
+        font-size: 0.9rem;
+        
+        img {
+            width: 100%;
+            border-radius: 7px;
+            object-fit: cover;
+        }
+    }
+
+    .p-dialog-footer {
+        .p-button {
+            font-family: $font-family-base;
+            padding: 12px;
+            
+            span {
+                font-weight: 400;
+            }
+        }
+    }
+}

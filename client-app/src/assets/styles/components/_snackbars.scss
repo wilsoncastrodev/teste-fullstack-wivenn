@@ -1,0 +1,21 @@
+.mdc-snackbar,
+.mdc-snackbar-error {
+    &__surface {
+        background-color: $primary;
+        border-radius: 6px;
+
+        .mdc-button {
+            color: $white;
+            background: transparent;
+            border: none;
+        }
+    }
+
+    .mdc-snackbar__label {
+        color: $white;
+    }
+
+    @include media-breakpoint-down(sm) {
+        margin-bottom: 100px;
+    }
+}

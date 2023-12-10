@@ -17,6 +17,7 @@ import RegisterPage from "../pages/auth/Register";
 import RegisterSuccessPage from "../pages/auth/RegisterSuccess";
 
 import HomePage from "../pages/app/home/Home";
+import MyReservations from "../pages/app/my-reservations/MyReservations";
 
 import ReservationsPage from "../pages/admin/Reservations";
 
@@ -64,6 +65,10 @@ const Router = createBrowserRouter([
             {
                 path: "",
                 element: <HomePage />,
+            },
+            {
+                path: "minhas-reservas",
+                element: <MyReservations />,
             },
         ],
     },
