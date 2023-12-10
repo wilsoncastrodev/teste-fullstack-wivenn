@@ -19,7 +19,7 @@ const SectionListBooks = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if (reservations) {
+        if (reservations && reservations.hasOwnProperty('id')) {
             dispatch(clearReservation());
             const mdcSnackbar: any = document.querySelector(".mdc-snackbar");
             const snackbar = new MDCSnackbar(mdcSnackbar);

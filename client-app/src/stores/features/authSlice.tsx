@@ -32,6 +32,16 @@ export const register = createAsyncThunk("auth/register", async (payload: Regist
 }
 );
 
+export const logout = createAsyncThunk("auth/logout", async (_, { rejectWithValue }) => {
+    try {
+        await AuthService.logout();
+        return null;
+    } catch (err) {
+        const error = axiosErrorHandler(err)
+        return rejectWithValue(error);
+    }
+});
+
 const initialState: AuthStateType = {
     user: null,
     registered: false,

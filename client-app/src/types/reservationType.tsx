@@ -4,7 +4,9 @@ export type ReservationResponseType = {
     status: string,
     book_id: number,
     created_at: string,
-    updated_at: string
+    updated_at: string,
+    book?: any,
+    user?: any,
 };
 
 export type ReservationRequestType = {

@@ -123,6 +123,17 @@ const FormLogin: FC = () => {
                             </div>
                         </Alert>
                     }
+                    <div className="d-grid gap-2 mt-4 pt-1">
+                        {
+                            !(loginType === "admin") ?
+                                <Link className={"btn btn-block btn-secondary"} to="/admin/login">
+                                    Login do Administrador
+                                </Link>
+                                : <Link className={"btn btn-block btn-primary"} to="/login">
+                                    Login do Usuário
+                                </Link>
+                        }
+                    </div>
                 </Form>
             )}
         </Formik>

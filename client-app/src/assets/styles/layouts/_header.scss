@@ -11,4 +11,8 @@ header {
         line-height: 1.9;
         margin-bottom: 3px;
     }
+
+    &.header-admin {
+        background-color: $secondary;
+    }
 }

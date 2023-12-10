@@ -54,7 +54,7 @@ const DialogReservation = ({ book, reserved = false }: any) => {
                 reserved && <Button label="Cancelar Reserva" className="btn btn-danger me-2" onClick={() => handleCancelReservation(book.reservation.id)} autoFocus />
             }
             {
-                book.is_available ? <Button label="Confirmar Reserva" className="btn btn-primary me-2" onClick={() => handleReservation(book.id)} autoFocus /> :
+                (!reserved && book.is_available) && isAvailable ? <Button label="Confirmar Reserva" className="btn btn-primary me-2" onClick={() => handleReservation(book.id)} autoFocus /> :
                     <Button label="Fechar" className="btn btn-primary" onClick={() => setVisible(false)} />
             }
         </div>

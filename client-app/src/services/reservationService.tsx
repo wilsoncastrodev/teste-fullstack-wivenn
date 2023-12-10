@@ -2,8 +2,11 @@ import { api } from '../config/api'
 import { AxiosResponse } from "axios";
 import { ReservationRequestType, ReservationResponseType } from '../types/reservationType';
 
+const getAllReservation = (): Promise<AxiosResponse<ReservationResponseType>> => {
+    return api.get<ReservationResponseType>('reservations')
+}
+
 const createReservation = (payload: ReservationRequestType): Promise<AxiosResponse<ReservationResponseType>> => {
-    console.log(payload);
     return api.post<ReservationResponseType>('reservations', payload)
 }
 
@@ -12,8 +15,9 @@ const cancelReservation = (payload: ReservationRequestType): Promise<AxiosRespon
 }
 
 const ReservationService = {
+    getAllReservation,
     createReservation,
-    cancelReservation
+    cancelReservation,
 };
 
 export default ReservationService;

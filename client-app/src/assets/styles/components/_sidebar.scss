@@ -1,0 +1,40 @@
+.sidebar {
+    z-index: 1000000000;
+    height: 100vh;
+
+    .sidebar-header {
+        margin: 20px 17px 16px;
+        font-size: 1.4rem;
+    }
+
+    .menu {
+        background: $white;
+        width: 360px;
+        border-bottom-left-radius: 14px;
+        border-top-left-radius: 14px;
+        z-index: 10;
+
+        .notification {
+            color: $secondary;
+            background: #f1f3f5;
+            margin: 14px 15px;
+            border-radius: 10px;
+            padding: 11px;
+            font-size: 0.85rem;
+
+            .date {
+                font-size: .7rem;
+                padding-top: 2px;
+            }
+        }
+    }
+
+    &.sidebar-remove {
+        z-index: -1;
+        height: 0;
+    }
+
+    .overlay {
+        background-color: rgb(54 90 114 / 40%) !important;
+    }
+}

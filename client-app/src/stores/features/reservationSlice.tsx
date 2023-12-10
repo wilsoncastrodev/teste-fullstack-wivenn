@@ -3,6 +3,17 @@ import { ReservationRequestType, ReservationStateType } from "../../types/reserv
 import { axiosErrorHandler } from "../../utils/errors";
 import ReservationService from "../../services/reservationService";
 
+export const getAllReservation = createAsyncThunk("reservation/getAllReservation", async (_, { rejectWithValue }) => {
+    try {
+        const { data: { data } }: any = await ReservationService.getAllReservation();
+        return data;
+    } catch (err) {
+            const error = axiosErrorHandler(err);
+            return rejectWithValue(error);
+        }
+    }
+);
+
 export const createReservation = createAsyncThunk("reservation/createReservation", async (payload: ReservationRequestType, { rejectWithValue }) => {
     try {
         const { data: { data } }: any = await ReservationService.createReservation(payload);
@@ -40,6 +51,16 @@ export const reservationSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
+        builder.addCase(getAllReservation.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getAllReservation.fulfilled, (state, action) => {
+            state.reservations = action.payload;
+            state.errors = null;
+        });
+        builder.addCase(getAllReservation.rejected, (state, action) => {
+            state.errors = action.payload;
+        });
         builder.addCase(createReservation.pending, (state) => {
             state.isLoading = true;
         });

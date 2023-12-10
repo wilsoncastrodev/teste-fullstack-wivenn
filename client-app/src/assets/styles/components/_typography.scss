@@ -11,6 +11,10 @@ h2 {
     font-size: calc(1.225rem + .9vw);
 }
 
+h4 {
+    color: $secondary;
+}
+
 .text-limit {
     display: -webkit-box;
     -webkit-line-clamp: 3;

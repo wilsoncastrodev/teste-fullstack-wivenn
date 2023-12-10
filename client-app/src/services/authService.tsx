@@ -10,9 +10,14 @@ const register = (payload: RegisterRequestType): Promise<AxiosResponse<AuthRespo
     return api.post<AuthResponseType>('register', payload)
 }
 
+const logout = (): Promise<AxiosResponse> => {
+    return api.post('logout')
+}
+
 const AuthService = {
     login,
-    register
+    register,
+    logout
 };
 
 export default AuthService;

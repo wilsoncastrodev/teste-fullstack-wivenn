@@ -6,7 +6,7 @@ body {
   height: 100%;
   color: $gray;
   font-family: $font-family-base;
-  font-size: $font-size-base;
+  font-size: $font-size-base !important;
   background-color: $body-bg;
 }
 
@@ -24,11 +24,11 @@ a {
 }
 
 .logo {
-    font-family: $font-family-main;
-    font-size: 3.625rem;
-    color: $primary;
-    font-weight: 500;
-    line-height: 1.4;
+  font-family: $font-family-main;
+  font-size: 3.625rem;
+  color: $primary;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 .logo-admin {
@@ -40,4 +40,12 @@ a {
   font-weight: 600;
   text-align: center;
   color: $primary;
+}
+
+.p-component {
+  font-size: .9rem !important;
+}
+
+#root {
+  height: 100%;
 }
