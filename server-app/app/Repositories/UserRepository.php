@@ -3,12 +3,14 @@
 namespace App\Repositories;
 
 use \Exception;
-use App\Interfaces\Repositories\UserRepositoryInterface;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use App\Interfaces\Repositories\UserRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -46,9 +48,25 @@ class UserRepository implements UserRepositoryInterface
         return null;
     }
 
-    public function getUserById(Request $request)
+    public function getAllLibrarian(): Collection | null
+    {
+        $role = Role::where('name', 'librarian')->first();
+
+        if ($role) {
+            return $role->users()->get();
+        }
+
+        return null;
+    }
+
+    public function getUserById(Request $request): User
     {
         return User::find($request->id);
+    }
+
+    public function getUserAuth(): User
+    {
+        return Auth::user();
     }
 
     public function revokeUserAuthenticated(Request $request): void

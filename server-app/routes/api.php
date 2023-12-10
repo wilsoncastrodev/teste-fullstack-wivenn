@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BookController;
 use App\Http\Controllers\Api\ReservationController;
+use App\Http\Controllers\Api\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,5 +37,7 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware(['auth:api', 'role:librarian', 'verified'])->group(function () {
         Route::get('reservations', [ReservationController::class, 'index']);
+
+        Route::get('notifications/reservations/librarian', [NotificationController::class, 'reservationNotifiedLibrarian']);
     });
 });
