@@ -1,7 +1,7 @@
 .btn {
-  font-size: 1.07rem;
+  font-size: 0.95rem !important;
+  border-radius: 8px !important;
   color: $white;
-  border-radius: 4px;
 
   &.btn-primary {
     background: $primary;
@@ -18,6 +18,15 @@
 
     &:hover {
       background: darken($secondary, 2%);
+    }
+  }
+
+  &.btn-danger {
+    background: $red;
+    border: none;
+
+    &:hover {
+      background: darken($red, 2%);
     }
   }
 
