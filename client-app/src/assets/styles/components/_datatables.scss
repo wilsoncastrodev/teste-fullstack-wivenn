@@ -1,0 +1,159 @@
+.p-datatable {
+    .p-datatable-header {
+        border: none;
+        padding: 0 0 26px;
+        text-align: right;
+
+        input {
+            background: transparent;
+            border-color: #b3c6d7;
+
+            &:focus,
+            &:hover {
+                border-color: $secondary;
+            }
+        }
+    }
+
+    .p-datatable-wrapper {
+        border: 2px solid #eaedf1;
+        border-radius: 10px;
+
+        table {
+            thead {
+                tr {
+                    th {
+                        background-color: $white;
+
+                        .p-column-header-content {
+                            padding-bottom: 7px;
+                            padding-top: 7px;
+                        }
+
+                        span {
+                            color: $secondary !important;
+                        }
+                    }
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        padding: 0.8rem 1rem;
+                        color: $secondary;
+
+                        .p-column-title {
+                            min-width: 135px;
+                        }
+
+                        .fa-trash-can {
+                            color: #e11d48;
+                        }
+
+                        .p-inputnumber {
+                            .p-inputtext {
+                                width: 44px;
+                            }
+
+
+                            &.p-inputwrapper {
+                                height: 42px;
+
+                                .p-inputtext {
+                                    width: 42px;
+                                    text-align: center;
+                                    border-color: #d0dce7;
+                                    font-size: 0.875rem;
+                                    padding: 6px;
+                                    color: $secondary;
+                                }
+
+                                .p-inputnumber-button {
+                                    background-color: $secondary;
+                                    border: none;
+                                    width: 2.7rem;
+
+                                    span {
+                                        font-size: 0.75rem;
+                                    }
+                                }
+                            }
+                        }
+
+                        @include media-breakpoint-down(lg) {
+                            width: auto !important;
+                        }
+                    }
+
+                    &.p-datatable-emptymessage {
+                        td {
+                            border-radius: 10px;
+                            display: table-cell;
+                        }
+                    }
+                }
+            }
+
+            td {
+                >button {
+                    font-size: 1.3rem;
+                    color: $red;
+                }
+
+                div {
+                    > button {
+                        font-size: 0.9rem !important;
+                        color: $red;
+                        padding: 9px 15px 10px;
+                        border-width: 2px;
+                        
+                        &:hover {
+                            color: $white !important;
+                        }
+                    }
+
+                    > strong {
+                        color: $red;
+                    }
+                }
+
+                a {
+                    color: $blue-600;
+
+                    i {
+                        font-size: 20px;
+                    }
+
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        color: $blue-600;
+                    }
+                }
+            }
+        }
+    }
+
+    .p-sortable-column {
+        &.p-sortable-column.p-highlight {
+            background: rgb(28 101 137 / 8%);
+
+            &:hover {
+                background: rgb(28 101 137 / 8%) !important;
+            }
+        }
+    }
+
+
+    .p-paginator-bottom {
+        background-color: transparent;
+        border: none;
+
+        .p-highlight {
+            background: #ecf2f4 !important;
+            border-color: #ecf2f4 !important;
+            color: $secondary !important;
+        }
+    }
+}

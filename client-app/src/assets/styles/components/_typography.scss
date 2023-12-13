@@ -1,0 +1,25 @@
+.fw-semi-bold {
+    font-weight: 500;
+}
+
+h2,
+h3 {
+    color: $primary;
+}
+
+h2 {
+    font-size: calc(1.225rem + .9vw);
+}
+
+h4 {
+    color: $secondary;
+}
+
+.text-limit {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: calc(1.2em * 3);
+    line-height: 1.2em;
+  }

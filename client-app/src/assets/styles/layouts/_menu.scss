@@ -1,0 +1,13 @@
+.menu-page {
+    align-items: center;
+    display: flex;
+    font-size: 1rem;
+
+    .list-group {
+        .list-group-item {
+            letter-spacing: 0.5px;
+            border: none;
+            background: none;
+        }
+    }
+}
