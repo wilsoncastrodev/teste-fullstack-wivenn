@@ -22,7 +22,7 @@ Route::prefix('v1')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
 
     Route::middleware(['auth:api', 'role:user|librarian', 'verified'])->group(function () {
-        Route::patch('reservations/{reservation}', [ReservationController::class, 'cancel']);
+        Route::patch('reservations/{reservation}/cancel', [ReservationController::class, 'cancel']);
 
         Route::post('logout', [AuthController::class, 'logout']);
     });

@@ -4,7 +4,7 @@ import { Column } from "primereact/column";
 import { MDCSnackbar } from '@material/snackbar';
 import { Card } from "react-bootstrap";
 import { RootState, useAppDispatch, useAppSelector } from "../../../stores/store";
-import { cancelReservation, getAllReservation } from "../../../stores/features/reservationSlice";
+import { cancelReservationByLibrarian, getAllReservation } from "../../../stores/features/reservationSlice";
 import moment from "moment";
 import DialogBook from "../../../components/dialogs/DialogBook";
 
@@ -21,12 +21,12 @@ const SectionListReservation: FC = () => {
     }, [isLoading]);
 
     useEffect(() => {
-        setItems(reservations);
-    }, [errors, reservations]);
+        if(reservations)
+            setItems(reservations);
+    }, [errors, reservations, dispatch]);
 
     const cancel = (book_id: number) => {
-        dispatch(cancelReservation({ "book_id": book_id }));
-        dispatch(getAllReservation());
+        dispatch(cancelReservationByLibrarian({ "book_id": book_id }));
         const mdcSnackbar: any = document.querySelector(".mdc-snackbar-error");
         const snackbar = new MDCSnackbar(mdcSnackbar);
         snackbar.timeoutMs = 5000;

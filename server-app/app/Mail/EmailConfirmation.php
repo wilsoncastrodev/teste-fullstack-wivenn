@@ -43,7 +43,7 @@ class EmailConfirmation extends Mailable
             markdown: 'email.email-verification',
             with: [
                 'user' => $this->user,
-                'url' => URL::to(null . "/email/verify", ['id' => $this->user->id, 'hash' => sha1($this->user->email)]),
+                'url' => URL::to(env('APP_URL') . "/email/verify/" . $this->user->id . "/" . sha1($this->user->email)),
             ],
         );
     }

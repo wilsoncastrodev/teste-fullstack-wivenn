@@ -11,7 +11,7 @@ const createReservation = (payload: ReservationRequestType): Promise<AxiosRespon
 }
 
 const cancelReservation = (payload: ReservationRequestType): Promise<AxiosResponse<ReservationResponseType>> => {
-    return api.patch<ReservationResponseType>(`reservations/${payload.book_id}`)
+    return api.patch<ReservationResponseType>(`reservations/${payload.book_id}/cancel`)
 }
 
 const ReservationService = {

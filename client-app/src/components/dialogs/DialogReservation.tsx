@@ -1,6 +1,6 @@
 import 'moment/locale/pt-br';
 import { Button } from 'primereact/button';
-import { cancelReservation, createReservation } from "../../stores/features/reservationSlice";
+import { cancelReservationByUser, createReservation } from "../../stores/features/reservationSlice";
 import { Dialog } from 'primereact/dialog';
 import { Fragment, useState, useEffect} from "react";
 import { useAppDispatch } from "../../stores/store";
@@ -24,7 +24,7 @@ const DialogReservation = ({ book, reserved = false }: any) => {
     }
 
     const handleCancelReservation = async (reservation_id: number) => {
-        dispatch(cancelReservation({ "book_id": reservation_id }));
+        dispatch(cancelReservationByUser({ "book_id": reservation_id }));
         setVisible(false)
     }
 

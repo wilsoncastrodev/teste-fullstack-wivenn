@@ -15,7 +15,19 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libzip-dev \
-    libpq-dev
+    libpq-dev \
+    supervisor
+
+RUN echo '[program:laravel-worker] \n\
+nodaemon=true \n\
+process_name=%(program_name)s \n\
+command=php /var/www/app/artisan queue:work --queue=default --sleep=3 --tries=3 \n\
+autostart=true \n\
+autorestart=true \n\
+user=root \n\
+redirect_stderr=true \n\
+stdout_logfile=/var/www/app/storage/logs/worker.log \n\
+stopwaitsecs=3600' >> /etc/supervisor/conf.d/laravel-worker.conf
 
 RUN docker-php-ext-install pdo
 RUN docker-php-ext-enable pdo
@@ -28,6 +40,9 @@ RUN docker-php-ext-enable pdo_pgsql
 
 RUN docker-php-ext-install gd
 RUN docker-php-ext-enable gd
+
+RUN docker-php-ext-install sockets
+RUN docker-php-ext-enable sockets
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 

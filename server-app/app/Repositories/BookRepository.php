@@ -17,9 +17,9 @@ class BookRepository implements BookRepositoryInterface
 
     public function searchBook(mixed $query): Collection
     {
-        return Book::where('title', 'like', '%' . $query . '%')
-            ->orWhere('author', 'like', '%' . $query . '%')
-            ->orWhere('isbn', 'like', '%' . $query . '%')
+        return Book::where('title', 'ILIKE', '%' . $query . '%')
+            ->orWhere('author', 'ILIKE', '%' . $query . '%')
+            ->orWhere('isbn', 'ILIKE', '%' . $query . '%')
             ->get();
     }
 

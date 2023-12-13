@@ -25,9 +25,21 @@ export const createReservation = createAsyncThunk("reservation/createReservation
 }
 );
 
-export const cancelReservation = createAsyncThunk("reservation/cancelReservation", async (payload: ReservationRequestType, { rejectWithValue }) => {
+export const cancelReservationByUser = createAsyncThunk("reservation/cancelReservationByUser", async (payload: ReservationRequestType, { rejectWithValue, dispatch }, ) => {
     try {
         const { data: { data } }: any = await ReservationService.cancelReservation(payload);
+        return data;
+    } catch (err) {
+        const error = axiosErrorHandler(err)
+        return rejectWithValue(error);
+    }
+}
+);
+
+export const cancelReservationByLibrarian = createAsyncThunk("reservation/cancelReservationByLibrarian", async (payload: ReservationRequestType, { rejectWithValue, dispatch }, ) => {
+    try {
+        const { data: { data } }: any = await ReservationService.cancelReservation(payload);
+        dispatch(getAllReservation());
         return data;
     } catch (err) {
         const error = axiosErrorHandler(err)
@@ -71,14 +83,23 @@ export const reservationSlice = createSlice({
         builder.addCase(createReservation.rejected, (state, action) => {
             state.errors = action.payload;
         });
-        builder.addCase(cancelReservation.pending, (state) => {
+        builder.addCase(cancelReservationByUser.pending, (state) => {
             state.isLoading = true;
         });
-        builder.addCase(cancelReservation.fulfilled, (state, action) => {
+        builder.addCase(cancelReservationByUser.fulfilled, (state, action) => {
             state.reservations = action.payload;
             state.errors = null;
         });
-        builder.addCase(cancelReservation.rejected, (state, action) => {
+        builder.addCase(cancelReservationByUser.rejected, (state, action) => {
+            state.errors = action.payload;
+        });
+        builder.addCase(cancelReservationByLibrarian.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(cancelReservationByLibrarian.fulfilled, (state) => {
+            state.errors = null;
+        });
+        builder.addCase(cancelReservationByLibrarian.rejected, (state, action) => {
             state.errors = action.payload;
         });
         builder.addCase(clearReservation.fulfilled, (state, action) => {

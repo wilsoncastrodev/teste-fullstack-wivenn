@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   client-app:
-    container_name: "client-app"
+    container_name: "wivenn-client-app"
     image: nginx:latest
     restart: always
     volumes:
@@ -61,6 +61,16 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: contato@wilsoncastro.dev
       PGADMIN_DEFAULT_PASSWORD: wilsoncastro123
+      
+  rabbitmq:
+    container_name: 'wivenn-server-app-rabbitmq'
+    image: rabbitmq:3.12.0
+    volumes:
+      - .rabbitmq-app/data/:/var/lib/rabbitmq
+      - .rabbitmq-app/log/:/var/log/rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
 
 # Comando para entrar no container wivenn-server-app-php
 # docker exec -it wivenn-server-app-php bash
