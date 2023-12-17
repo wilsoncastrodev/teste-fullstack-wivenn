@@ -21,6 +21,7 @@ notificações para bibliotecários e gerenciamento centralizado das reservas do
 - [Clique aqui](https://github.com/wilsoncastrodev/teste-fullstack-wivenn/blob/feature/ajustes-finais/TESTE.md) para visualizar as instruções do teste
 
 ## Índice
+- [Demonstração](#demonstração)
 - [Funcionalidades Implementadas](#funcionalidades-implementadas)
 - [Diferenciais Implementados](#diferenciais-implementados)
 - [Informações Adicionais](#informações-adicionais)
@@ -35,6 +36,9 @@ notificações para bibliotecários e gerenciamento centralizado das reservas do
 - [Contato](#contato)
 - [Autores](#autores)
 - [Licença](#licença)
+
+## Demonstração
+Caso queira ver a aplicação em execução sem a necessidade de instalá-la em sua máquina local, acesse: https://wivenn.tests.wilsoncastro.dev
 
 ## Funcionalidades Implementadas
 - Login e cadastro de usuários usando OAuth2;
